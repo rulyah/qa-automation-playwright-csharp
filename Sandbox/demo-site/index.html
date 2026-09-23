@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>Demo Login</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #f4f5f7; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+  form { background: #fff; padding: 32px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,.1); width: 320px; }
+  h1 { font-size: 20px; margin: 0 0 20px; }
+  label { display: block; font-size: 13px; margin-bottom: 4px; color: #333; }
+  input { width: 100%; padding: 8px 10px; margin-bottom: 14px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+  button { width: 100%; padding: 10px; background: #2563eb; color: #fff; border: none; border-radius: 4px; font-size: 14px; cursor: pointer; }
+  button:hover { background: #1d4ed8; }
+  #error { color: #b91c1c; font-size: 13px; margin-bottom: 12px; display: none; }
+  #success { color: #15803d; font-size: 13px; margin-bottom: 12px; display: none; }
+  .hint { font-size: 11px; color: #888; margin-top: 16px; line-height: 1.5; }
+</style>
+</head>
+<body>
+  <form id="login-form" novalidate>
+    <h1>Вхід у систему</h1>
+
+    <div id="error" data-testid="error-message"></div>
+    <div id="success" data-testid="success-message">Вхід виконано успішно!</div>
+
+    <label for="login">E-mail або номер телефону</label>
+    <input id="login" name="login" type="text" autocomplete="username" data-testid="login-input">
+
+    <label for="password">Пароль</label>
+    <input id="password" name="password" type="password" autocomplete="current-password" data-testid="password-input">
+
+    <button type="submit" data-testid="submit-button">Увійти</button>
+
+    <div class="hint">
+      Тестові дані:<br>
+      e-mail: user@example.com<br>
+      телефон: +380501234567<br>
+      пароль: Password123
+    </div>
+  </form>
+
+<script>
+  const VALID_PASSWORD = "Password123";
+  const VALID_EMAIL = "user@example.com";
+  const VALID_PHONE = "+380501234567";
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^\+?[0-9]{10,15}$/;
+
+  const form = document.getElementById("login-form");
+  const loginInput = document.getElementById("login");
+  const passwordInput = document.getElementById("password");
+  const errorBox = document.getElementById("error");
+  const successBox = document.getElementById("success");
+
+  function showError(message) {
+    errorBox.textContent = message;
+    errorBox.style.display = "block";
+    successBox.style.display = "none";
+  }
+
+  function showSuccess() {
+    successBox.style.display = "block";
+    errorBox.style.display = "none";
+  }
+
+  function clearMessages() {
+    errorBox.style.display = "none";
+    successBox.style.display = "none";
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    clearMessages();
+
+    const login = loginInput.value.trim();
+    const password = passwordInput.value;
+
+    if (!login && !password) {
+      showError("Заповніть поля логіну та паролю");
+      return;
+    }
+    if (!login) {
+      showError("Введіть e-mail або номер телефону");
+      return;
+    }
+    if (!password) {
+      showError("Введіть пароль");
+      return;
+    }
+
+    const looksLikeEmail = login.includes("@");
+
+    if (looksLikeEmail) {
+      if (!emailRegex.test(login)) {
+        showError("Некоректний формат e-mail");
+        return;
+      }
+      if (login === VALID_EMAIL && password === VALID_PASSWORD) {
+        showSuccess();
+      } else {
+        showError("Невірний e-mail або пароль");
+      }
+    } else {
+      if (!phoneRegex.test(login)) {
+        showError("Некоректний формат номера телефону");
+        return;
+      }
+      if (login === VALID_PHONE && password === VALID_PASSWORD) {
+        showSuccess();
+      } else {
+        showError("Невірний номер телефону або пароль");
+      }
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "mock-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "reset": "node -e \"require('fs').copyFileSync('db.seed.json','db.json')\"",
+    "start": "npm run reset && json-server db.json --port 3000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "json-server": "^0.17.4"
+  }
+}

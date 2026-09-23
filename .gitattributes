@@ -1,0 +1,12 @@
+# У репозиторії завжди LF, у робочій копії — як прийнято в ОС
+* text=auto eol=lf
+
+# Бінарні файли не нормалізувати
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.webm binary
+*.zip  binary
+*.dll  binary

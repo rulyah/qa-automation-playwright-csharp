@@ -1,0 +1,16 @@
+{
+  "users": [
+    { "id": 1, "name": "Ruslan", "email": "ruslan@example.com", "role": "admin", "active": true },
+    { "id": 2, "name": "Olena", "email": "olena@example.com", "role": "user", "active": true },
+    { "id": 3, "name": "Petro", "email": "petro@example.com", "role": "user", "active": false }
+  ],
+  "posts": [
+    { "id": 1, "userId": 1, "title": "First post", "views": 120 },
+    { "id": 2, "userId": 1, "title": "Second post", "views": 45 },
+    { "id": 3, "userId": 2, "title": "Hello world", "views": 300 }
+  ],
+  "comments": [
+    { "id": 1, "postId": 1, "body": "Nice one", "author": "Olena" },
+    { "id": 2, "postId": 3, "body": "Thanks", "author": "Ruslan" }
+  ]
+}

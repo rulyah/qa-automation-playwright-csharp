@@ -1,0 +1,27 @@
+# Build output
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+TestResults/
+
+# Playwright
+playwright-report/
+test-results/
+.playwright/
+
+# Node
+node_modules/
+
+# IDE / tools
+.idea/
+.vs/
+.vscode/
+.claude/
+*.user
+*.suo
+*.DotSettings.user
+
+# OS
+Thumbs.db
+.DS_Store
