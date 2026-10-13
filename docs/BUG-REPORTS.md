@@ -156,6 +156,7 @@ Warning: Unsupported settings key (display_lowest_price_30_days)
 
 ### Notes
 Delayed / Returning — не перевірено
+
 ---
 
 ## LC-12 · Картка товару: алерт відмови показує залишок 30 замість 0, коли весь залишок уже в кошику
