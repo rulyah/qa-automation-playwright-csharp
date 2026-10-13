@@ -14,6 +14,7 @@
 | Структура UI-фреймворку | [`POMIA/`](POMIA) — Page Object Model з компонентами |
 | Якість API-тестів | [`RestAPI/Reference/UsersApiTests.cs`](RestAPI/Reference/UsersApiTests.cs) |
 | Інфраструктура тестів | [`RestAPI/Reference/ApiTestBase.cs`](RestAPI/Reference/ApiTestBase.cs) — контекст, фабрика даних, прибирання |
+| Ручне тестування | [`docs/BUG-REPORTS.md`](docs/BUG-REPORTS.md) — баг-репорти на дефекти LiteCart, знайдені вручну |
 
 Каталог [`Sandbox/`](Sandbox) — ранні навчальні вправи, залишені навмисно, щоб було видно шлях. Для оцінки рівня дивіться `POMIA/` і `RestAPI/Reference/`.
 
@@ -34,6 +35,7 @@ RestAPI/Reference/          API-тести до /users
 ├─ UserModels.cs            типізовані моделі запиту й відповіді
 └─ UsersApiTests.cs         9 тестів: CRUD + негативні сценарії
 
+docs/BUG-REPORTS.md         баг-репорти: дефекти LiteCart, знайдені ручним тестуванням
 mock-api/                   json-server: сервер і дані для API-тестів
 Sandbox/                    ранні вправи
 .runsettings                браузер, headless, кількість воркерів
