@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace PlaywrightTests.RestAPI.Reference;
+namespace PlaywrightTests.Reference.RestAPI;
 
 /// <summary>
 /// Тіло запиту на створення або повну заміну користувача.

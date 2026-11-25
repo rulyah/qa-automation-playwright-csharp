@@ -10,6 +10,7 @@
 | LC-10 | Fatal error в адмінці, коли часовий пояс магазину — `Europe/Kyiv` | Blocker |
 | LC-11 | Stock Status «-1 pcs», коли зарезервовано більше, ніж є на складі | Major |
 | LC-12 | Алерт показує залишок 30 замість 0, коли весь залишок уже в кошику | Minor |
+| LC-16 | Update у кошику приймає кількість понад залишок (31 при 30), статус Sold Out | Minor |
 
 ## Environment (спільне для всіх тікетів)
 | | |
@@ -249,3 +250,59 @@ UPDATE lc_settings SET value = 'Europe/Kiev' WHERE id = 11;
 ```
 UPDATE lc_settings SET value = 'Europe/Kiev' WHERE id = 11;
 ```
+
+---
+
+## LC-16 · Кошик: Update приймає кількість понад залишок (31 при 30), коли статус товару Sold Out
+| |                                 |
+|---|---------------------------------|
+| **Severity** | Minor                           |
+| **Priority** | *(ставить PM/лід)*              |
+| **Відтворюваність** | 100 %, кошик, Green Duck зі статусом Sold Out |
+| **Статус** | Open                            |
+
+### Environment
+Спільне (див. вище), крім:
+- ОС: Windows 10 Home
+- Браузер: Chrome 158.0.8127.38 (64-bit)
+
+### Preconditions
+- Гість (не залогінений, нове вікно інкогніто), порожній кошик.
+- Cookies прийнято (кнопка в банері) → оновити сторінку (F5), відкритий DevTools → Network.
+- `<cart_uid>` = значення куки `cart[uid]` (DevTools → Application → Cookies → http://localhost).
+- Товар - Green Duck: http://localhost/litecart/rubber-ducks-c-1/subcategory-c-2/green-duck-p-2
+  (`sku = RD002`): `lc_products.quantity = 30`, `sold_out_status_id = 1` (`orderable = 0`):
+
+```sql
+SELECT sku, sold_out_status_id, quantity FROM lc_products WHERE sku = 'RD002' AND quantity = 30 AND sold_out_status_id = 1;
+```
+
+### Steps
+1. Відкрити картку товару http://localhost/litecart/rubber-ducks-c-1/subcategory-c-2/green-duck-p-2
+2. У полі Quantity ввести 1 → Add to cart
+3. Відкрити кошик - http://localhost/litecart/checkout
+4. У полі Quantity ввести 31 → Update
+
+### Actual Result
+- Кількість товару в кошику = 31, сума замовлення перерахована за новою кількістю.
+- Під назвою товару червоний текст «There are only 30 remaining products available for purchase».
+- У БД рядок у `lc_cart_items` змінився: `product_id = 2`, `quantity = 31`, `customer_id = 0`:
+
+```sql
+SELECT * FROM `lc_cart_items` WHERE cart_uid = '<cart_uid>';
+```
+
+### Expected Result
+- Повідомлення «There are only 30 remaining products available for purchase», кількість товару в кошику = 1.
+- У БД рядок у `lc_cart_items` не змінився: `product_id = 2`, `quantity = 1`, `customer_id = 0` (той самий запит).
+
+Підстава: при додаванні товару понад залишок через картку товару http://localhost/litecart/rubber-ducks-c-1/subcategory-c-2/green-duck-p-2
+відображається алерт, і товар у кошик не додається.
+
+### Notes / Localization
+Severity Minor: замовлення підтвердити не можна, перепродажу немає.
+
+- Картка: 31 → відмова
+- Кошик, Update: 30 → коректно
+- Кошик, Update: 31 → прийнято (баг)
+- Кошик, Update: 60 → прийнято (баг)

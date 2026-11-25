@@ -1,7 +1,7 @@
 using Microsoft.Playwright;
-using PlaywrightTests.POMIA.Components;
+using PlaywrightTests.Reference.POMIA.Components;
 
-namespace PlaywrightTests.POMIA.Pages;
+namespace PlaywrightTests.Reference.POMIA.Pages;
 
 /// <summary>
 /// Базова сторінка. Хедер із меню акаунта та кошиком присутній на кожній сторінці магазину,

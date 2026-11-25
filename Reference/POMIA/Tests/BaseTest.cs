@@ -1,8 +1,8 @@
 using Microsoft.Playwright;
 using Microsoft.Playwright.NUnit;
-using PlaywrightTests.POMIA.Pages;
+using PlaywrightTests.Reference.POMIA.Pages;
 
-namespace PlaywrightTests.POMIA.Tests;
+namespace PlaywrightTests.Reference.POMIA.Tests;
 
 /// <summary>
 /// Базовий тест. Успадкування від PageTest прибирає ручний life-cycle

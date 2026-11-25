@@ -1,6 +1,6 @@
 using Microsoft.Playwright;
 
-namespace PlaywrightTests.POMIA.Pages;
+namespace PlaywrightTests.Reference.POMIA.Pages;
 
 /// <summary>Сторінка кошика / оформлення замовлення.</summary>
 public class CheckoutPage : BasePage

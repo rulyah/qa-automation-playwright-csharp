@@ -1,6 +1,6 @@
 using Microsoft.Playwright;
 
-namespace PlaywrightTests.RestAPI.Reference;
+namespace PlaywrightTests.Reference.RestAPI;
 
 /// <summary>
 /// Еталонний набір CRUD-тестів до /users мок-сервера json-server.

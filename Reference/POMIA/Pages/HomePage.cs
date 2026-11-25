@@ -1,6 +1,6 @@
 using Microsoft.Playwright;
 
-namespace PlaywrightTests.POMIA.Pages;
+namespace PlaywrightTests.Reference.POMIA.Pages;
 
 /// <summary>Головна сторінка магазину з блоком "Latest products".</summary>
 public class HomePage : BasePage

@@ -1,0 +1,26 @@
+$kind: http-request
+url: http://localhost/litecart/
+method: GET
+scripts:
+  - type: afterResponse
+    code: "const html = pm.response.text();\r
+
+      \  const match = html.match(/\"csrf_token\":\"([a-f0-9]{64})\"/);\r
+
+      \r
+
+      \  pm.test(\"CSRF token found in _env\", function () {\r
+
+      \      pm.expect(match, \"токена немає в сторінці\").to.not.be.null;\r
+
+      \  });\r
+
+      \r
+
+      \  if (match) {\r
+
+      \      pm.collectionVariables.set(\"csrf_token\", match[1]);\r
+
+      \  }"
+    language: text/javascript
+order: 953

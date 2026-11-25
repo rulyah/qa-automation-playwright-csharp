@@ -1,7 +1,7 @@
 using Microsoft.Playwright;
-using PlaywrightTests.POMIA.TestData;
+using PlaywrightTests.Reference.POMIA.TestData;
 
-namespace PlaywrightTests.POMIA.Components;
+namespace PlaywrightTests.Reference.POMIA.Components;
 
 /// <summary>Випадаюче меню акаунта в хедері разом із формою логіну всередині нього.</summary>
 public class AccountComponent : BaseComponent

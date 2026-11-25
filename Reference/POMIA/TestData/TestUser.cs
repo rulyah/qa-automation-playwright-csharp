@@ -1,4 +1,4 @@
-namespace PlaywrightTests.POMIA.TestData;
+namespace PlaywrightTests.Reference.POMIA.TestData;
 
 /// <summary>
 /// Тестові дані відокремлені від сторінок і від тестів:

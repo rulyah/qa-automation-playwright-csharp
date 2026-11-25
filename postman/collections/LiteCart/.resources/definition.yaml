@@ -1,0 +1,6 @@
+$kind: collection
+variables:
+  product_id: ""
+  add_qty: ""
+  qty_before: ""
+  csrf_token: ""

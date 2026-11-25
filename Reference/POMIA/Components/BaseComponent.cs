@@ -1,6 +1,6 @@
 using Microsoft.Playwright;
 
-namespace PlaywrightTests.POMIA.Components;
+namespace PlaywrightTests.Reference.POMIA.Components;
 
 /// <summary>
 /// Базовий компонент: шматок UI, який повторюється на багатьох сторінках (хедер, кошик, форма логіну).

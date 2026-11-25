@@ -1,4 +1,4 @@
-namespace PlaywrightTests.POMIA;
+namespace PlaywrightTests.Reference.POMIA;
 
 /// <summary>
 /// Єдине місце, де живуть налаштування оточення.

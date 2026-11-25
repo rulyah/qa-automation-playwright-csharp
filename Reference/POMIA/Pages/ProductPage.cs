@@ -1,6 +1,6 @@
 using Microsoft.Playwright;
 
-namespace PlaywrightTests.POMIA.Pages;
+namespace PlaywrightTests.Reference.POMIA.Pages;
 
 /// <summary>Картка товару.</summary>
 public class ProductPage : BasePage

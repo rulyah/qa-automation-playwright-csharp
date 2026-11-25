@@ -1,0 +1,64 @@
+$kind: http-request
+url: http://localhost/litecart/ajax/cart.json
+method: POST
+body:
+  type: urlencoded
+  content:
+    csrf_token: "{{csrf_token}}"
+    product_id: "{{product_id}}"
+    quantity: "{{add_qty}}"
+    add_cart_product: "true"
+scripts:
+  - type: afterResponse
+    code: "const json = pm.response.json();\r
+
+      \  const productId = Number(pm.collectionVariables.get(\"product_id\"));\r
+
+      \  const added     = Number(pm.collectionVariables.get(\"add_qty\"));\r
+
+      \  const before    = Number(pm.collectionVariables.get(\"qty_before\"));\r
+
+      \r
+
+      \  const item = json.items.find(i => i.product_id === productId);\r
+
+      \r
+
+      \  pm.test(\"Add to cart — no error\", function () {\r
+
+      \      pm.expect(json).to.not.have.property(\"alert\");\r
+
+      \  });\r
+
+      \r
+
+      \  pm.test(\"Add to cart — quantity increased\", function () {\r
+
+      \      pm.expect(item, \"товар є в кошику\").to.exist;\r
+
+      \      pm.expect(item.quantity).to.eql(before + added);\r
+
+      \  });"
+    language: text/javascript
+  - type: beforeRequest
+    code: "const productId = Number(pm.collectionVariables.get(\"product_id\"));\r
+
+      \r
+
+      \  pm.sendRequest(\"http://localhost/litecart/ajax/cart.json\", function (err, res) {\r
+
+      \      if (err) { console.log(err); return; }\r
+
+      \r
+
+      \      const json = res.json();\r
+
+      \      const item = json.items.find(i => i.product_id === productId);\r
+
+      \r
+
+      \      pm.collectionVariables.set(\"qty_before\", item ? item.quantity : 0);\r
+
+      \  });"
+    language: text/javascript
+order: 2000

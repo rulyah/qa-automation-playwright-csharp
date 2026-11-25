@@ -2,7 +2,7 @@ using System.Text.Json;
 using Microsoft.Playwright;
 using Microsoft.Playwright.NUnit;
 
-namespace PlaywrightTests.RestAPI.Reference;
+namespace PlaywrightTests.Reference.RestAPI;
 
 /// <summary>
 /// Спільна інфраструктура для API-тестів: контекст запитів, фабрика тестових

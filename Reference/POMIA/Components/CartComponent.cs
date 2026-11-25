@@ -1,7 +1,7 @@
 using Microsoft.Playwright;
-using PlaywrightTests.POMIA.Pages;
+using PlaywrightTests.Reference.POMIA.Pages;
 
-namespace PlaywrightTests.POMIA.Components;
+namespace PlaywrightTests.Reference.POMIA.Components;
 
 /// <summary>Іконка кошика в хедері: показує кількість товарів і веде на оформлення замовлення.</summary>
 public class CartComponent : BaseComponent

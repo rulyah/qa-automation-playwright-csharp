@@ -1,6 +1,6 @@
-using PlaywrightTests.POMIA.TestData;
+using PlaywrightTests.Reference.POMIA.TestData;
 
-namespace PlaywrightTests.POMIA.Tests;
+namespace PlaywrightTests.Reference.POMIA.Tests;
 
 [TestFixture]
 [Category("Checkout")]
